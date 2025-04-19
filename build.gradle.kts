@@ -30,8 +30,7 @@ loom {
 
     mods {
         create(mod.name) {
-            sourceSet(sourceSets["main"].also { it.kotlin.srcDir("$rootDir/src/${it.name}/kotlin") })
-            sourceSet(sourceSets["client"].also { it.kotlin.srcDir("$rootDir/src/${it.name}/kotlin") })
+            sourceSet(sourceSets["main"])
         }
     }
 }
@@ -53,6 +52,7 @@ dependencies {
     minecraft("com.mojang:minecraft:$mcVersion")
     mappings("net.fabricmc:yarn:$mcVersion+build.${deps["yarn_build"]}:v2")
     modImplementation("net.fabricmc:fabric-loader:${deps["fabric_loader"]}")
+    modImplementation("net.fabricmc:fabric-language-kotlin:1.13.2+kotlin.${kotlin.coreLibrariesVersion}")
 
     fapi(
         // Add modules from https://github.com/FabricMC/fabric
