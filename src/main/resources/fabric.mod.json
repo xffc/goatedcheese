@@ -3,7 +3,7 @@
   "id": "${id}",
   "version": "${version}",
   "name": "${name}",
-  "description": "cheese.",
+  "description": "Simple mod for goat cheese and goat milk",
   "authors": [
     "xffc", "foiilk"
   ],
@@ -24,6 +24,7 @@
   "depends": {
     "fabricloader": ">=0.15",
     "minecraft": "${mcdep}",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "fabric-language-kotlin": "${fabriclanguagekotlin}"
   }
 }
