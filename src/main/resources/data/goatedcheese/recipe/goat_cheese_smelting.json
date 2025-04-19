@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "goatedcheese:goat_milk_bucket"
+  },
+  "cookingtime": 600,
+  "result": {
+    "id": "goatedcheese:goat_cheese"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "goatedcheese:goat_milk_bucket"
+  },
+  "cookingtime": 300,
+  "result": {
+    "id": "goatedcheese:goat_cheese"
+  }
+}

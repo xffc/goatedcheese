@@ -1,8 +1,8 @@
 plugins {
     `maven-publish`
+    kotlin("jvm")
     id("fabric-loom")
-    //id("dev.kikugie.j52j")
-    //id("me.modmuss50.mod-publish-plugin")
+    id("me.modmuss50.mod-publish-plugin")
 }
 
 class ModData {
@@ -29,9 +29,9 @@ loom {
     splitEnvironmentSourceSets()
 
     mods {
-        create("template") {
-            sourceSet(sourceSets["main"])
-            sourceSet(sourceSets["client"])
+        create(mod.name) {
+            sourceSet(sourceSets["main"].also { it.kotlin.srcDir("$rootDir/src/${it.name}/kotlin") })
+            sourceSet(sourceSets["client"].also { it.kotlin.srcDir("$rootDir/src/${it.name}/kotlin") })
         }
     }
 }
@@ -57,6 +57,8 @@ dependencies {
     fapi(
         // Add modules from https://github.com/FabricMC/fabric
         "fabric-lifecycle-events-v1",
+        "fabric-item-group-api-v1",
+        "fabric-object-builder-api-v1"
     )
 }
 
@@ -104,7 +106,6 @@ tasks.register<Copy>("buildAndCollect") {
     dependsOn("build")
 }
 
-/*
 publishMods {
     file = tasks.remapJar.get().archiveFile
     additionalFiles.from(tasks.remapSourcesJar.get().archiveFile)
@@ -135,7 +136,6 @@ publishMods {
         }
     }
 }
-*/
 /*
 publishing {
     repositories {
