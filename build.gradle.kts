@@ -94,7 +94,7 @@ tasks.processResources {
         "name" to mod.name,
         "version" to mod.version,
         "mcdep" to mcDep,
-        "fabriclanguagekotlin" to "$mcVersion+kotlin.${kotlin.coreLibrariesVersion}"
+        "fabriclanguagekotlin" to "1.13.2+kotlin.${kotlin.coreLibrariesVersion}"
     )
 
     filesMatching("fabric.mod.json") { expand(map) }
