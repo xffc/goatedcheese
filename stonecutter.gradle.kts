@@ -3,6 +3,7 @@ plugins {
     kotlin("jvm") version "2.1.20" apply false
     id("fabric-loom") version "1.9-SNAPSHOT" apply false
     id("me.modmuss50.mod-publish-plugin") version "0.7.+" apply false
+    id("de.undercouch.download") version "5.+" apply false
 }
 stonecutter active "1.21.4" /* [SC] DO NOT EDIT */
 
