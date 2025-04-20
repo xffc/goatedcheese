@@ -16,6 +16,9 @@
   "entrypoints": {
     "main": [
       "fun.xffc.goatedcheese.ModEntrypoint"
+    ],
+    "fabric-datagen": [
+      "fun.xffc.goatedcheese.datagen.DataGenerator"
     ]
   },
   "mixins": [

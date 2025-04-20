@@ -26,11 +26,15 @@ group = mod.group
 base { archivesName.set(mod.id) }
 
 loom {
-    splitEnvironmentSourceSets()
+    fabricApi.configureDataGeneration {
+        client = true
+    }
 
-    mods {
-        create(mod.name) {
-            sourceSet(sourceSets["main"])
+    runs {
+        remove(get("server"))
+
+        all {
+            runDir = "run"
         }
     }
 }
@@ -58,7 +62,8 @@ dependencies {
         // Add modules from https://github.com/FabricMC/fabric
         "fabric-lifecycle-events-v1",
         "fabric-item-group-api-v1",
-        "fabric-object-builder-api-v1"
+        "fabric-object-builder-api-v1",
+        "fabric-data-generation-api-v1"
     )
 }
 
@@ -72,7 +77,6 @@ loom {
     runConfigs.all {
         ideConfigGenerated(true)
         vmArgs("-Dmixin.debug.export=true")
-        runDir = "../../run"
     }
 }
 

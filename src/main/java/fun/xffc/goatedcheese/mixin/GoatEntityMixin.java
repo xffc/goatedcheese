@@ -1,5 +1,6 @@
 package fun.xffc.goatedcheese.mixin;
 
+import fun.xffc.goatedcheese.ModItems;
 import fun.xffc.goatedcheese.item.GoatMilkBucketItem;
 import net.minecraft.entity.passive.GoatEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,6 +20,6 @@ abstract class GoatEntityMixin {
             index = 2
     )
     private ItemStack changeStack(ItemStack itemStack, PlayerEntity playerEntity, ItemStack itemStack2) {
-        return GoatMilkBucketItem.INSTANCE.getDefaultStack();
+        return ModItems.GOAT_MILK_BUCKET.getDefaultStack();
     }
 }

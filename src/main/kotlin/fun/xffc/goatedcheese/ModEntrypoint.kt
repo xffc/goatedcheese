@@ -1,12 +1,10 @@
 package `fun`.xffc.goatedcheese
 
-import `fun`.xffc.goatedcheese.item.*
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents
 import net.minecraft.item.Item
 import net.minecraft.item.ItemGroups
-import net.minecraft.item.ItemStack
 import net.minecraft.registry.Registries
 import net.minecraft.registry.Registry
 import net.minecraft.text.Text
@@ -16,22 +14,21 @@ const val MOD_ID = "goatedcheese"
 
 class ModEntrypoint: ModInitializer {
     override fun onInitialize() {
-        GoatCheeseItem().register("goat_cheese".id())
-        GoatMilkBucketItem().register("goat_milk_bucket".id())
+        ModItems // waking this shit up
 
         Registry.register(Registries.ITEM_GROUP, "items".id(), FabricItemGroup.builder()
             .displayName(Text.literal("Goated Cheese"))
             .noScrollbar()
-            .icon { ItemStack(GoatMilkBucketItem.INSTANCE) }
+            .icon { ModItems.GOAT_CHEESE.defaultStack }
             .entries { _, entries ->
-                entries.add(GoatCheeseItem.INSTANCE)
-                entries.add(GoatMilkBucketItem.INSTANCE)
+                entries.add(ModItems.GOAT_CHEESE)
+                entries.add(ModItems.GOAT_MILK_BUCKET)
             }
             .build())
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register { group ->
-            group.add(GoatCheeseItem.INSTANCE)
-            group.add(GoatMilkBucketItem.INSTANCE)
+            group.add(ModItems.GOAT_CHEESE)
+            group.add(ModItems.GOAT_MILK_BUCKET)
         }
     }
 }
