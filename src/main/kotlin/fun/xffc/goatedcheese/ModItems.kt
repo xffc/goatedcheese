@@ -26,22 +26,32 @@ object ModItems {
 
     @JvmField
     val GOAT_CHEESE = register(
-        "goat_cheese".id(),
-        { Item(it) },
+        "raw_goat_cheese".id(),
+        { GoatCheeseItem(it) },
         Item.Settings()
             .food(FoodComponents.APPLE)
     )
 
     @JvmField
+    val GOAT_CHEESE_MASS = register(
+        "goat_cheese_mass".id(),
+        { Item(it) },
+        Item.Settings()
+            .food(FoodComponents.DRIED_KELP)
+    )
+
+    @JvmField
+    val RIPENED_GOAT_CHEESE = register(
+        "RIPENED_GOAT_CHEESE".id(),
+        { RipenedGoatCheeseItem(it) },
+        Item.Settings()
+            .food(FoodComponents.COOKED_CHICKEN)
+    )
+
+    @JvmField
     val GOAT_MILK_BUCKET = register(
         "goat_milk_bucket".id(),
-        {
-            //? if 1.21.4 {
-            Item(it)
-            //?} else if 1.21.1 {
-            //GoatMilkBucketItem(it)
-            //?}
-        },
+        { Item(it) },
         Item.Settings()
             //? if 1.21.4 {
             .recipeRemainder(Items.BUCKET)

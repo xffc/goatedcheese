@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.client.data.BlockStateModelGenerator;
 import net.minecraft.client.data.ItemModelGenerator;
 import net.minecraft.client.data.Models;
+import net.minecraft.item.Items;
 
 //?} else if 1.21.1 {
 /*import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
