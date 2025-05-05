@@ -25,9 +25,12 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'microsoft'
+          cache: gradle
       - name: make gradle wrapper executable
         if: ${{ runner.os != 'Windows' }}
         run: chmod +x ./gradlew
+      - name: download required mods to run
+        run: ./gradlew downloadRunMods
       - name: generate data (resources)
         run: ./gradlew runDatagen
       - name: build

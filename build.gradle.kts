@@ -1,8 +1,12 @@
+import groovy.json.JsonSlurper
+import java.net.URI
+
 plugins {
     `maven-publish`
     kotlin("jvm")
     id("fabric-loom")
     id("me.modmuss50.mod-publish-plugin")
+    id("de.undercouch.download")
 }
 
 class ModData {
@@ -46,6 +50,41 @@ repositories {
     }
     strictMaven("https://www.cursemaven.com", "CurseForge", "curse.maven")
     strictMaven("https://api.modrinth.com/maven", "Modrinth", "maven.modrinth")
+}
+
+fun <T> get(url: String): T =
+    JsonSlurper().parseText(URI(url).toURL().readText()) as T
+
+enum class ModrinthVersionType { RELEASE, BETA, ALPHA, NULL; }
+data class ModrinthVersionFile(val url: String, val filename: String)
+data class ModrinthModVersion(val name: String, val version: String, val type: ModrinthVersionType, val files: List<ModrinthVersionFile>)
+
+tasks.register("downloadRunMods") {
+    fun download(name: String) {
+        val versions = get<List<Map<String, *>>>("https://api.modrinth.com/v2/project/$name/version?game_versions=[%22$mcVersion%22]")
+            .map { ModrinthModVersion(
+                it["name"].toString(),
+                it["version_number"].toString(),
+                ModrinthVersionType.valueOf(it["version_type"].toString().uppercase()),
+                (it["files"] as List<Map<String, *>>)
+                    .map { f -> ModrinthVersionFile(f["url"].toString(), f["filename"].toString()) }
+            ) }
+
+        versions.firstOrNull()?.files?.forEach {
+            download.run {
+                src(it.url)
+                dest("run/mods/${it.filename}")
+                overwrite(true)
+            }
+        }
+    }
+
+    group = "other"
+
+    doLast {
+        download("fabric-api")
+        download("fabric-language-kotlin")
+    }
 }
 
 dependencies {
